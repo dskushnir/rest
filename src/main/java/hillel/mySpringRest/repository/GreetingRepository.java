@@ -1,10 +1,20 @@
 package hillel.mySpringRest.repository;
+import lombok.Data;
+import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
+@Data
+@Repository
 public class GreetingRepository {
-    Map<String,String>greeting=new HashMap<>();
-
+    private static Map<String,String>greeting=new HashMap<String, String>(){{
+    put("en","Hello!");
+    put("it","Buongiorno");
+    put("fr","Bonjour");}};
 
 }
+
+
+
+
+
+
