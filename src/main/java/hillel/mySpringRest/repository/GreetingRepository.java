@@ -34,29 +34,7 @@ public class GreetingRepository {
         public static double getNumberGreetingType(List<Greeting>getGreetingList,String string){
             return getGreetingList.stream().filter(greeting -> greeting.equals(new Greeting(string))).count();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /*  public static String getByLanguage(Map<String,String> greeting,String language){
-        return greeting.entrySet().stream().filter(x->language.equalsIgnoreCase(x.getKey())).map(x->x.getValue())
-                .collect(Collectors.joining());
-    }
-
-    public static String getByRandom(Map<String,String> greeting) {
-        Object randomName = greeting.keySet().toArray()[new Random().nextInt(greeting.keySet().toArray().length)];
-        return greeting.get(randomName);
-
-    }*/
+        
 
 }
 
