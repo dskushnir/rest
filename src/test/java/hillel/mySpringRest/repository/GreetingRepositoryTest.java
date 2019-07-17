@@ -58,7 +58,7 @@ public class GreetingRepositoryTest {
                 mapToDouble(e -> e).sum();
     }
 
-    private boolean shouldIsEqualDistribution(double chiSquare) {
+    private boolean isEqualDistribution(double chiSquare) {
 
         double chiSquareMax = 9.21;
         return chiSquare < chiSquareMax;
@@ -66,8 +66,8 @@ public class GreetingRepositoryTest {
 
     @Test
     public void shouldIsEqualDistribution() throws Exception {
-        boolean actual = shouldIsEqualDistribution(8.0);
-        Assertions.assertThat(actual).isEqualTo(shouldIsEqualDistribution(chiSquare()));
+        boolean actual = isEqualDistribution(8.0);
+        Assertions.assertThat(actual).isEqualTo(isEqualDistribution(chiSquare()));
     }
 
 
