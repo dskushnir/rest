@@ -1,40 +1,32 @@
 package hillel.mySpringRest.repository;
+
 import hillel.mySpringRest.model.Greeting;
-import lombok.Data;
 import org.springframework.stereotype.Repository;
+
 import java.util.*;
 
-@Data
+
 @Repository
 public class GreetingRepository {
-    private static Map<String, Greeting>greetings=new HashMap<>();
-    static {initGreetings();}
-    private static void initGreetings() {
-            greetings.put("en",new Greeting("Hello!"));
-            greetings.put("it",new Greeting("Buongiorno!"));
-            greetings.put("fr",new Greeting("Bonjour!"));
-        }
-        public static Greeting getByLanguage(String language) {
-        return greetings.get(language);
-        }
-        public static Greeting getByRandom(){
-            Random random = new Random();
-            List<String> keys = new ArrayList<>(greetings.keySet());
-            String  randomLanguage = keys.get( random.nextInt(keys.size()) );
-            return greetings.get(randomLanguage);
-        }
-        public static List<Greeting>getGreetingList(int numberGreeting) {
-            List<Greeting> greetingList = new ArrayList<>();
-            for (int i = 0; i < numberGreeting; i++) {
-                greetingList.add(getByRandom());
 
-            }
-            return greetingList;
-        }
-        public static double getNumberGreetingType(List<Greeting>getGreetingList,String string){
-            return getGreetingList.stream().filter(greeting -> greeting.equals(new Greeting(string))).count();
-        }
-        
+
+    private final Map<String, Greeting> greetings = Map.of(
+            "en", new Greeting("Hello!"),
+            "it", new Greeting("Buongiorno!"),
+            "fr", new Greeting("Bonjour!"));
+    private final Random random = new Random();
+
+
+    public Greeting findByLanguage(String language) {
+        return greetings.getOrDefault(language, new Greeting("There is no greeting in this language "));
+    }
+
+
+    public Greeting findByRandom() {
+        List<String> keys = new ArrayList<>(greetings.keySet());
+        String randomLanguage = keys.get(random.nextInt(keys.size()));
+        return greetings.get(randomLanguage);
+    }
 
 }
 
